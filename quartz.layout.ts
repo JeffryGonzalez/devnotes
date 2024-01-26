@@ -5,12 +5,9 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  footer: Component.Footer({
-    links: {
-      GitHub: "https://github.com/jeffrygonzalez",
-      "Discord Community": "https://discord.gg/cRFFHYye7t",
-    },
-  }),
+  footer: Component.MyComponent(),
+
+  
 }
 
 // components for pages that display a single page (e.g. a single note)
@@ -27,7 +24,9 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(),
     Component.DesktopOnly(Component.Explorer({
-     useSavedState: true
+     useSavedState: true,
+     folderClickBehavior: "link",
+     title:"Jeff"
     })),
     
   ],
@@ -37,6 +36,7 @@ export const defaultContentPageLayout: PageLayout = {
   
     Component.RecentNotes({ title: 'Recent'})
   ],
+
  
 }
 
