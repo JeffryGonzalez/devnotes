@@ -18,7 +18,10 @@ export default (opts: Options) => {
           </small>
         </p>
         <p>
-          <a href="https://github.com/jeffrygonzalez">Github</a>
+          <a href="https://github.com/jeffrygonzalez">My Github</a>
+        </p>
+        <p>
+          <a href="https://github.com/jeffrygonzalez/devnotes">These DevNotes</a>
         </p>
       </footer>
     )
