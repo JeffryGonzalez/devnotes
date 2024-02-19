@@ -8,9 +8,9 @@ I sometimes hear developers use the terms "library" and "framework" almost inter
 
 ## Libraries
 
-Libraries are almost always expedients. Some code that someone else wrote, that, if given enough time, you could write it to. Your decision to use a particular library could be simply to save time, or it could be because the library provides some functionality that is very precise or specific and requires lots of technical knowledge. Sometimes libraries are provided by a vendor as a way to interface with their product. An example would be use the IBM DB2 library for .NET.  If you are working for a company selling widgets, they probably don't want you to spend weeks or months implementing a network library for securely connecting to a database. If you were writing code to make an HTTP request from a .NET application, you could study up on socket programming, TCP, and read RFC 2616 and implement the HTTP protocol, or you could use the provided library for HTTP in .NET.
+Libraries are almost always expedients. Some code that someone else wrote, that, if given enough time, you could write it too. Your decision to use a particular library could be simply to save time, or it could be because the library provides some functionality that is very precise or specific and requires lots of technical knowledge. Sometimes libraries are provided by a vendor as a way to interface with their product. An example would be use the IBM DB2 library for .NET.  If you are working for a company selling widgets, they probably don't want you to spend weeks or months implementing a network library for securely connecting to a database. If you were writing code to make an HTTP request from a .NET application, you could study up on socket programming, TCP, and read RFC 2616 and implement the HTTP protocol, or you could use the provided library for HTTP in .NET.
 
-They are not very opinionated in terms of the application you are building, or any particular architectural style. Most libraries are fairly easy to learn and to use and provide great value. Since libraries are pretty general purpose, they do tend to get "bloated" over time. Since they don't have any opinions on how you write your application, you often run into "edge cases" that your  application needs that are not covered by the library. Your code then becomes a sort of negotiating session with the library, you end up wrapping it up, extending it, and eventually the code you have created to accommodate your cases for the library are actually more complex than if you didn't use it at all.
+They are not very opinionated in terms of the application you are building, or any particular architectural style. Most libraries are fairly easy to learn and to use and provide great value. Since libraries are pretty general purpose, they do tend to get "bloated" over time.  I've had libraries that I've used for *years* suddenly not be worth the effort any longer. No biggie. You were using it because it was *helpful*, not because you *needed* it.
 
 > [!hint] A library is code that your code uses.
 > Your code is still at the center, it just helps out and saves some time.
@@ -45,13 +45,13 @@ Notice what a pain in the butt it is to try to write unit tests for things like 
 
 Surprisingly, we sort of get a Stockholm Syndrome type thing going with these code bases. After we learn the "conventions" of an application, we start to identify with it. We identify with the *authority* of the framework you are using. We say "Why of *course* you have to put that empty marker interface on this type. It's *for the framework*". And then justify it by saying "Well, how *else* would a developer know that this method called `Handle` that takes an argument of type `PlaceOrderCommand` would actually, uh, handle the place order command? THERE IS NO INTERFACE! YOU AREN'T INHERITING SOMETHING!".  
 
-> [!warning] When you start thinking your code is superior because it is sprinkled with all sorts of interfaces, base classes, and attributes by someone else, you make have Framework Stockholm Syndrome
+> [!warning] When you start thinking your code is superior because it is sprinkled with all sorts of interfaces, base classes, and attributes created by someone else, you make have Framework Stockholm Syndrome
 
-And I bet your tests *suck*. They aren't as meaningful as they could be. When another developer reads your test, are they able to see it as *documentation* on how something in your application works? If you are writing a test for how the `PlaceOrder` command is processed, how much of the code is aligned with the business of placing orders, and how much of it is with the business of your framework?
+And I bet your tests *suck*. They aren't as meaningful as they could be, and probably really brittle. When another developer reads your test, are they able to see it as *documentation* on how something in your application works? If you are writing a test for how the `PlaceOrder` command is processed, how much of the code is aligned with the business of placing orders, and how much of it is with the business of your framework? Can you even tell the difference anymore?
 
 Even when you do figure out how to test this stuff, you just don't do it enough. Your confidence comes from your ability to add the right *types* to things, and the *magic* of the framework to somehow pull it all together. Meanwhile when you get a defect for shipping to non-existent addresses or something, can you find those tests?
 
-One of the main reasons for things like having to implement interfaces, derive from a base class, add attributes, etc. when working with frameworks in .NET is because the framework needs to know *something* about your code to do it's thing. 
+One of the main reasons for things like having to implement interfaces, derive from a base class, add attributes, etc. when working with frameworks in .NET is because the framework needs to know *something* about your code to do it's thing.  It needs some *angle* to gain some intimacy.
 
 The framework will "know" about your code because it shares *its* code. That `ControllerBase` class your API controller extends is *not your code*. The `[HttpPost]` attribute on a method of that class is so the framework will know what that method is *for*. 
 
@@ -67,7 +67,7 @@ The problem with this convention approach is, yeah, it can be a little flaky and
 
 I remember in the early days of ASP.NET MVC, they used a *lot* of conventions for things like routing.  It was called "ConventionalRouting" and it was *totally* based on reflection and naming things [[Routing to controller actions in ASP.NET Core | Microsoft Learn](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/routing?view=aspnetcore-8.0#conventional-routing)
 
-It wasn't particularly slow, because the reflection to find those routes happened at application startup. When your app started, as part of the boot-up process, it would use reflection to find all the routes that matched the conventions, and create a "route table". After that initial delay in starting your API, requests were fulfilled from this route table.
+It wasn't particularly slow, because the reflection to find those routes happened at application startup. When your app started, as part of the boot-up process, it would use reflection to find all the routes that matched the conventions, and create a "route table". After that initial delay in starting your API, requests were fulfilled from this route table. Another bit of hesitation with this approach is that you won't be able to compile native code when your code relies on reflection *at runtime*.
 
 This was the time when there was no difference for us, as lowly developers, between build time and run time. 
 
@@ -79,4 +79,4 @@ Microsoft introduced a new C# compiler *years* ago called "Roslyn". It is a C# c
 
 If you think about it, with this example, this is pretty close to exactly what we want. The old "icky" Java thing with reflection would just silently be ignored. Of course, an xUnit test will be ignored if you don't have the proper attribute on it. With Roslyn, it can warn you about it. 
 
-I think we will start seeing a lot more of this. One of my favorite frameworks, [[Wolverine]] and [[Marten]] use this approach pretty extensively.
+I think we will start seeing a lot more of this. One of my favorite frameworks, [[Wolverine]] and [[Marten]] use this approach pretty extensively. I'll write more about this in the future.
