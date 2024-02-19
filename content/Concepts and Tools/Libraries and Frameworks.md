@@ -79,4 +79,4 @@ Microsoft introduced a new C# compiler *years* ago called "Roslyn". It is a C# c
 
 If you think about it, with this example, this is pretty close to exactly what we want. The old "icky" Java thing with reflection would just silently be ignored. Of course, an xUnit test will be ignored if you don't have the proper attribute on it. With Roslyn, it can warn you about it. 
 
-
+I think we will start seeing a lot more of this. One of my favorite frameworks, [[Wolverine]] and [[Marten]] use this approach pretty extensively.
