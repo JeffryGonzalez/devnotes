@@ -1,10 +1,9 @@
 ---
-title: OpenTelemetry ,NET
+title: OpenTelemetry .NET
 draft: false
-tags: 
+tags:
 date: 2024-02-18
 ---
-
 
 Packages
 
@@ -54,7 +53,6 @@ services:
     restart: unless-stopped
 volumes:
   prom_data:
-
 ```
 
 In the folder with the above `docker-compose`, create a folder called `grafana` and place this:
@@ -84,13 +82,12 @@ scrape_configs:
 
     static_configs:
       - targets: ["host.docker.internal:8080"]
-
 ```
 
 > [!Note] This is assuming your API is running on the localhost at 8080. Set your `launchsettings.json` appropriately.
 
-
 The `appsettings.json` file:
+
 ```json
 {
   "Logging": {
@@ -105,7 +102,6 @@ The `appsettings.json` file:
   },
   "AllowedHosts": "*"
 }
-
 ```
 
 Create a `WeatherMetrics.cs` class with this:
@@ -137,7 +133,7 @@ public class WeatherMetrics : IDisposable
         WxRequested = meter.CreateCounter<int>("wx.requested", "Times", "Number of times weather was requested");
 
         WxDistributions = meter.CreateHistogram<double>("wx.temp.distributions", "Temperature", "The Temperatures");
-        
+
 
 
     }
@@ -219,7 +215,6 @@ app.MapPrometheusScrapingEndpoint();
 app.Run();
 ```
 
-
 The Get request can have this:
 
 ```csharp
@@ -260,4 +255,3 @@ For Prometheus: http://localhost:9090
 For Grafana: http://localhsot:3030 (username is Admin password is grafana).
 
 Some pre-made Grafana dashboards for .NET [aspire/src/Grafana/dashboards at main · dotnet/aspire (github.com)](https://github.com/dotnet/aspire/tree/main/src/Grafana/dashboards)
-
