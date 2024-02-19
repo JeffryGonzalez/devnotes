@@ -117,8 +117,7 @@ As a counter-example, suppose your application needs to read data from a specifi
 
 ## Observability
 
-[[Open Telemetry]]
-
+[[Open Telemetry]] and [[Observability]]
 
 
 ## SRE
