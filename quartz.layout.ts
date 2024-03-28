@@ -33,7 +33,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()),
 
-    Component.RecentNotes({ title: "New and Updated", limit: 5 }),
+    //Component.RecentNotes({ title: "New and Updated", limit: 5 }),
   ],
 }
 
