@@ -12,26 +12,18 @@ date: 2024-03-18
 Text from an email to a student asking about videos/resources for Angular, etc.
 
 
-
-  
-
 A couple things that I've benefited from, other than the [https://angular.io](https://angular.io) and [https://angular.dev](https://angular.dev) tutorials:
-
-  
+ 
 
 TypeScript Specific Stuff:
-
   
 
 [Professional TypeScript Training by Matt Pocock | Total TypeScript](https://www.totaltypescript.com/) - this guy is the BEST. Some free stuff, some paid. He tends to be a little React centric, but the TypeScript stuff is the best out there.
 
 Matt's youtube is fire, too: [(2) Matt Pocock - YouTube](https://www.youtube.com/@mattpocockuk)
-
   
 
 [Execute Program](https://www.executeprogram.com/) - Gary Bernhadt is a programming GOD. You get 16 free lessons here, and I pay for it. Not just TypeScript, but Python, Regular Expressions, SQL, stuff like that. And you do it all in the browser with stuff he wrote... blows my mind.
-
-  
 
   
 
